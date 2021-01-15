@@ -1,0 +1,7 @@
+name: LocationCalculcator
+version: 1.0.0
+description: Hello 1234
+author: Schmidi
+main: de.schmidi.Start
+api-version: 1.13
+commands:

@@ -1,0 +1,6 @@
+plugin.yml
+de\schmidi\Start.class
+de\schmidi\utils\ChatUtil.class
+de\schmidi\listener\SlimeInteractListener.class
+de\schmidi\PluginInitializer.class
+de\schmidi\service\LocationService.class
