@@ -2,6 +2,7 @@ package de.schmidi.listener;
 
 import static de.schmidi.utils.ChatUtil.sendMessage;
 
+import org.bukkit.Bukkit;
 import org.bukkit.GameMode;
 import org.bukkit.Location;
 import org.bukkit.Material;
@@ -58,15 +59,20 @@ public class SlimeInteractListener implements Listener {
 			Location loc1 = this.service.getMarkedLocations().get(p)[0];
 
 			Location loc2 = this.service.getMarkedLocations().get(p)[1];
-			TextComponent message = new TextComponent();
-			message.setText(ChatUtil.getPrefix() + "Distance: " + this.service.calculateDistance(loc1, loc2));
-			message.setClickEvent(
-					new ClickEvent(ClickEvent.Action.COPY_TO_CLIPBOARD, this.service.calculateDistance(loc1, loc2)));
+			if(Bukkit.getVersion().contains("1.16")) {
+				TextComponent message = new TextComponent();
+				message.setText(ChatUtil.getPrefix() + "Distance: " + this.service.calculateDistance(loc1, loc2));
+				message.setClickEvent(
+						new ClickEvent(ClickEvent.Action.COPY_TO_CLIPBOARD, this.service.calculateDistance(loc1, loc2)));
 
-			message.setHoverEvent(
-					new HoverEvent(HoverEvent.Action.SHOW_TEXT, new Text("Copy the relative coordinates.")));
-			p.spigot().sendMessage(message);
-			this.service.removeMarkedPoints(p);
+				message.setHoverEvent(
+						new HoverEvent(HoverEvent.Action.SHOW_TEXT, new Text("Copy the relative coordinates.")));
+				p.spigot().sendMessage(message);
+				this.service.removeMarkedPoints(p);
+			} else {
+				p.sendMessage(ChatUtil.getPrefix() + "Distance: " + this.service.calculateDistance(loc1, loc2));
+			}
+			
 		} else {
 			sendMessage(p, "First location marked.");
 		}
