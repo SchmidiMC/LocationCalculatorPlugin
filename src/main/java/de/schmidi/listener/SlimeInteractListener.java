@@ -2,11 +2,13 @@ package de.schmidi.listener;
 
 import static de.schmidi.utils.ChatUtil.sendMessage;
 
+import org.bukkit.GameMode;
 import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
+import org.bukkit.event.block.Action;
 import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.inventory.EquipmentSlot;
 
@@ -41,6 +43,13 @@ public class SlimeInteractListener implements Listener {
 
 		if (!p.hasPermission(this.permission))
 			return;
+		
+		if(p.getGameMode() != GameMode.CREATIVE)
+			return;
+
+		if (event.getAction() == Action.LEFT_CLICK_BLOCK) {
+			event.setCancelled(true);
+		}
 
 		Location loc = event.getClickedBlock().getLocation();
 
@@ -50,15 +59,16 @@ public class SlimeInteractListener implements Listener {
 
 			Location loc2 = this.service.getMarkedLocations().get(p)[1];
 			TextComponent message = new TextComponent();
-			message.setText(ChatUtil.getPrefix() + "Distanz: " + this.service.calculateDistance(loc1, loc2));
+			message.setText(ChatUtil.getPrefix() + "Distance: " + this.service.calculateDistance(loc1, loc2));
 			message.setClickEvent(
 					new ClickEvent(ClickEvent.Action.COPY_TO_CLIPBOARD, this.service.calculateDistance(loc1, loc2)));
 
-			message.setHoverEvent(new HoverEvent(HoverEvent.Action.SHOW_TEXT, new Text("Copy relative location.")));
+			message.setHoverEvent(
+					new HoverEvent(HoverEvent.Action.SHOW_TEXT, new Text("Copy the relative coordinates.")));
 			p.spigot().sendMessage(message);
 			this.service.removeMarkedPoints(p);
 		} else {
-			sendMessage(p, "first location marked.");
+			sendMessage(p, "First location marked.");
 		}
 
 	}

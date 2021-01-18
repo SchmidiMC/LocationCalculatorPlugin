@@ -20,10 +20,6 @@
 			<name>My Private Maven Repositoty on Repsy</name>
 			<url>https://repo.repsy.io/mvn/robatsky/robamidi</url>
 		</repository>
-		<repository>
-			<id>enginehub-maven</id>
-			<url>http://maven.enginehub.org/repo/</url>
-		</repository>
 	</repositories>
 
 	<dependencies>
@@ -32,16 +28,6 @@
 			<artifactId>spigot-api</artifactId>
 			<version>1.16.3-R0.1-SNAPSHOT</version>
 			<scope>provided</scope>
-		</dependency>
-		<dependency>
-			<groupId>de.robamidi</groupId>
-			<artifactId>bukkit-mc</artifactId>
-			<version>1.16.3</version>
-		</dependency>
-		<dependency>
-			<groupId>de.robamidi</groupId>
-			<artifactId>craftbukkit-mc</artifactId>
-			<version>1.16.3</version>
 		</dependency>
 		<dependency>
 			<groupId>de.schmidimc</groupId>

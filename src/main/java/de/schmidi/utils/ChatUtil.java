@@ -18,13 +18,13 @@ public class ChatUtil {
 
 	public static String getPrefix() {
 		setPrefix(ChatColor.BOLD + "" + ChatColor.DARK_GREEN + "[" + ChatColor.GREEN + Start.pluginName
-				+ ChatColor.DARK_GREEN + "]" + ChatColor.BLUE + " >>> ");
+				+ ChatColor.DARK_GREEN + "]" + ChatColor.DARK_GRAY + " >>> "+ ChatColor.BLUE);
 		return prefix;
 	}
 	
 	public static void sendMessage(CommandSender sender, String text) {
 		setPrefix(ChatColor.BOLD + "" + ChatColor.DARK_GREEN + "[" + ChatColor.GREEN + Start.pluginName
-				+ ChatColor.DARK_GREEN + "]" + ChatColor.BLUE + " >>> ");
+				+ ChatColor.DARK_GREEN + "]" + ChatColor.DARK_GRAY + " >>> "+ ChatColor.BLUE);
 		say(sender, text);
 	}
 
